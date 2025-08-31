@@ -1,0 +1,48 @@
+<odoo>
+    <record id="view_operator_task_kanban" model="ir.ui.view">
+        <field name="name">operator.task.kanban</field>
+        <field name="model">operator.task</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="status"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card o_kanban_record #{record.status.raw_value == 'in_progress' and 'bg-warning' or ''} #{record.status.raw_value == 'defect' and 'bg-danger' or ''}" style="position: relative;">
+                            <div class="oe_kanban_content">
+                                <strong><t t-esc="record.name.value"/></strong>
+                                <div>Статус:
+                                    <t t-if="record.status.raw_value == 'ready'">Готово к работе</t>
+                                    <t t-elif="record.status.raw_value == 'in_progress'">В работе</t>
+                                    <t t-elif="record.status.raw_value == 'done'">Выполнено</t>
+                                    <t t-elif="record.status.raw_value == 'defect'">Брак</t>
+                                </div>
+                                <div>Время начала: <t t-esc="record.start_time.value or ''"/></div>
+                                <div>Время конца: <t t-esc="record.end_time.value or ''"/></div>
+
+                                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                                    <div>
+                                        <t t-if="record.status.raw_value == 'ready'">
+                                            <button name="action_start" type="object" class="btn btn-primary btn-sm">Взять в работу</button>
+                                        </t>
+                                        <t t-if="record.status.raw_value == 'in_progress'">
+                                            <button name="action_done" type="object" class="btn btn-success btn-sm">ГОТОВО</button>
+                                            <button name="action_defect" type="object" class="btn btn-danger btn-sm">БРАК</button>
+                                        </t>
+                                    </div>
+
+                                    <div>
+                                        <button name="action_show_drawing" type="object" class="btn btn-secondary btn-sm">Посмотреть чертеж</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

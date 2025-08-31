@@ -1,0 +1,17 @@
+<odoo>
+    <record id="action_operator_task" model="ir.actions.act_window">
+        <field name="name">Заказы</field>
+        <field name="res_model">operator.task</field>
+        <field name="view_mode">kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Здесь отображаются все заказы для оператора.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_operator_root" name="АРМ Оператора" sequence="10"/>
+
+    <menuitem id="menu_operator_tasks" name="Задания" parent="menu_operator_root" action="action_operator_task"/>
+</odoo>
+

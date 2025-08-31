@@ -1,0 +1,8 @@
+<odoo>
+    <record id="task_demo_1" model="operator.task">
+        <field name="name">Заказ 1</field>
+    </record>
+    <record id="task_demo_2" model="operator.task">
+        <field name="name">Заказ 2</field>
+    </record>
+</odoo>
